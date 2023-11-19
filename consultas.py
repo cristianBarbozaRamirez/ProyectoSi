@@ -66,10 +66,25 @@ class ConsultasBD:
 
     def suma_total_gastos(self):
         pass
-        
+        consulta_primera_fila = "SELECT fecha FROM registros_gastos ORDER BY id ASC LIMIT 1"
+        consulta_ultima_fila = "SELECT fecha FROM registros_gastos ORDER BY id DESC LIMIT 1"
+        self.cursor.execute(consulta_primera_fila)
+        ob_fecha_inicio = self.cursor.fetchone()
 
+        self.cursor.execute(consulta_ultima_fila)
+        ob_fecha_fin = self.cursor.fetchone()
 
-
+        fecha_inicio = ob_fecha_inicio[0].strftime("%Y-%m-%d")
+        fecha_fin = ob_fecha_fin[0].strftime("%Y-%m-%d")
+        print(f" {fecha_inicio} - {fecha_fin}")
+        consulta_suma = "SELECT SUM(cantidad) FROM registros_gastos"
+        self.cursor.execute(consulta_suma)
+        suma_total = self.cursor.fetchone()
+# Imprime el resultado
+        if suma_total[0] is not None:
+            print(f"La suma total de la columna 'cantidad' es: {suma_total[0]:.2f}")
+        else:
+            print("La tabla está vacía.")
 
     def cerrar_conexion(self):
         self.cursor.close()

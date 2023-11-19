@@ -13,7 +13,15 @@ def main():
         if opcion == "1":
             consulta.agregar_gasto() 
         elif opcion == "2":
-            consulta.suma_por_fecha()
+            opcion2 = input("Como desea calcular los gastos(fecha/total):")
+            if opcion2 == "fecha":
+                consulta.suma_por_fecha()
+            elif opcion2 == "total":
+                consulta.suma_total_gastos()
+            else:
+                print("Opción no válida. Por favor, ingrese una opción válida (fecha/total).")
+
+
         elif opcion == "3":
             print("¡Hasta luego!")
             break
