@@ -1,7 +1,7 @@
 from consultas import *
 
 def main():
-    consulta = ConsultasBD("localhost","root","xymn2232","gastos")
+    consulta = ConsultasBD("localhost","root","G#h7Y^p2s!a9","gastos")
     consulta.obtener_resultados_por_dia()
     while True:
         print("\n=== Menú Gastos Personales ===")
